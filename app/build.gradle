@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "uz.rusrav.bukhara"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 9
+        versionName '1.0.5'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                hostName: "rusrav.uz",
+                defaultUrl: "https://rusrav.uz/",
+                launcherName: "RusRav",
+                assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], ' +
+                        '"target": {"namespace": "web", "site": "https://rusrav.uz"}}]'
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.2.0'
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+}
